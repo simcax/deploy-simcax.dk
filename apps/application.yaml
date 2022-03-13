@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: simcax-dk
-  namespace: argocd
+  namespace: cd-skov-run
   annotations:
     argocd-image-updater.argoproj.io/image-list: simcax/simcax.dk:0.0.x
     argocd-image-updater.argoproj.io/write-back-method: git:repocreds
@@ -11,15 +11,15 @@ spec:
   project: default
 
   source: 
-    repoURL: https://github.com/simcax/deploy-dotime.me.git
+    repoURL: https://github.com/simcax/deploy-simcax.dk.git
     targetRevision: HEAD
-    path: dotime-me
+    path: simcax-dk
     helm:
       valueFiles:
-        - values-dev.yaml
+        - values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: dotime-me-dev1
+    namespace: simcax-dk
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
