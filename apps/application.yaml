@@ -2,11 +2,12 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: simcax-dk
-  namespace: cd-skov-run
+  namespace: argocd-skov-run
   annotations:
-    argocd-image-updater.argoproj.io/image-list: simcax/simcax.dk:0.0.x
+    argocd-image-updater.argoproj.io/image-list: simcax-dk=simcax/simcax.dk:0.0.x
     argocd-image-updater.argoproj.io/write-back-method: git:repocreds
     argocd-image-updater.argoproj.io/git-branch: master
+    argocd-image-updater.argoproj.io/simcax.dk.pull-secret: pullsecret:cd-skov-run/regcred
 spec:
   project: default
 
